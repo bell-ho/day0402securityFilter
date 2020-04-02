@@ -27,10 +27,10 @@ public class Day0402securityApplication {
 	
 	
 	public static void main(String[] args) {
-		
-		DBManager.insert(new MemberVo("tiger",PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("tiger"),"홍길동","USER"));
-		DBManager.insert(new MemberVo("master",PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("1234"),"길동","ADMIN"));
-		System.out.println("사용자 추가됨");
+//		DBManager.insert(new MemberVo("tiger",PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("tiger"),"홍길동","USER"));
+//		DBManager.insert(new MemberVo("master",PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("1234"),"길동","ADMIN"));
+//		System.out.println("사용자 추가됨");
+		System.out.println("패스워드 인코딩 객체");
 		SpringApplication.run(Day0402securityApplication.class, args);
 	}
 

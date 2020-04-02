@@ -17,6 +17,7 @@ public class BoardController {
 	public String insert() {
 		return "insert";
 	}
+	
 }
 
 

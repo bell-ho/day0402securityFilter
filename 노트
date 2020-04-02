@@ -57,10 +57,30 @@ WebSecurityConfiguerAdapter 클래스를 상속한다
 구현 : 인터페이스를 구현
 
 사용자설정을 위해서는 스프링 시큐리티가 제공하는 UserDetailService를 구현한다
+================================================================================================================================================================
 
 Service란?
 controller : 사용자 요청에 처리
 service    : 사용자 요청에 따라 바로 dao를 처리하는 것 뿐아니라 다른일들이 많다	controller와 dao에 넣기엔 가독성이 떨어진다
-				이러한 경우 service를 이용한다
+			 이러한 경우 service를 이용한다
+================================================================================================================================================================
+<<스프링시큐리티가 제공하는 loginForm에는 다음과 같은 _crsf가 hidden으로 전달된다>>
+===>이 값이 오지 않으면 잘못된 접근으로 처리되어 로그인을 시도 할 수 없다
+
+따라서 직접 loginForm을 만들면 시스템이 생성한 _csrf값을 읽어와서 전달해야 한다
+jsp의 사용이 아닌 동적인 html을 사용한다면 thymeleaf를 사용한다
+================================================================================================================================================================
+<< thymeleaf 설정 >>
+spring.thymeleaf.prefix=classpath:templates/
+spring.thymeleaf.check-template-location=true
+spring.thymeleaf.suffix=.html
+spring.thymeleaf.mode=HTML5
+spring.thymeleaf.cache=false
+spring.thymeleaf.order=0
+
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-thymeleaf</artifactId>
+</dependency>
 
 		
