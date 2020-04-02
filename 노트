@@ -1,0 +1,66 @@
+스프링 시큐리티 사용
+<dependency>
+	<groupId>org.springframework.boot</groupId>
+	<artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+
+
+/
+/all/list
+/insert
+/admin/cmd1
+
+/,/all	모든요청은 로그인 상관없이 아무나 접근할 수 있다
+/admin  모든 요청은 admin 이라는 권한(role)이 있어야 사용가능 
+
+그 나머지 요청은 login만 하면 사용가능
+
+스프링 시큐리티는 패스워드를 "tiger" 이면 글자 그대로 검사하지않고 암호화해서 검사한다 그래서 데이터베이스에 암호화해서 담아야한다
+
+암호화를 위한 객체를 생성한다
+<bean id="passwordEncoder" class="PassWordEncoder"></bean>
+
+mybatis 설정 vo 설정
+회원을 추가하는 메소드와 화원아이드를 매개변수로 받아 회원의 정보의 vo를 반환하는 메소드
+
+메인메소드가 있는 클래스에서 다음을 추가한다 
+@Bean
+	public PasswordEncoder passwordEncoder() { //Delegat : 대리자
+		return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+	}
+	
+실험을 위한 두개의 레코드 추가
+DBManager.insert(new MemberVo("tiger",PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("tiger"),"홍길동","USER"));
+DBManager.insert(new MemberVo("master",PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("1234"),"길동","ADMIN"));
+		
+스프링 시큐리가 로그인 인증처리 할때
+패스워드는 암호화 하여 검사하기 때문에 우리도 db에 추가할때는 인코딩 해야 한다
+		
+================================================================================================================================================================
+
+사용자별 어떤 서비스를 받을 수 있는지에 대한
+시큐리티 환경설정을 한다
+
+WebSecurityConfiguerAdapter 클래스를 상속한다
+		http.authorizeRequests()
+		.mvcMatchers("/","/all/**") //어떤패턴인지
+		.permitAll()			//어디서든지 서비스
+		.mvcMatchers("/admin/**") //어드민이면
+		.hasRole("ADMIN")	//어드민의 롤을줌
+		.anyRequest()	//그외 누구든지
+		.authenticated();	//인증만(로그인만) 하면됨
+		
+================================================================================================================================================================
+데이터 베이스와 연동하여 사용자를 설정해준다
+
+확장 : 클래스를 상속
+구현 : 인터페이스를 구현
+
+사용자설정을 위해서는 스프링 시큐리티가 제공하는 UserDetailService를 구현한다
+
+Service란?
+controller : 사용자 요청에 처리
+service    : 사용자 요청에 따라 바로 dao를 처리하는 것 뿐아니라 다른일들이 많다	controller와 dao에 넣기엔 가독성이 떨어진다
+				이러한 경우 service를 이용한다
+
+		
