@@ -5,12 +5,16 @@
 <mapper namespace="member">
 
 	<select id="selectMember" resultType="MemberVo">
-		select * from member100 where id=#{username}
+		select * from member100
+		where id=#{username}
 	</select>
 
 	<insert id="insert">
-		insert into member100 values(#{id},#{pwd},#{name},#{role})
+		insert into member100
+		values(#{id},#{pwd},#{name},#{role})
 	</insert>
 
-
+	<select id="selectAll" resultType="memberVo">
+		select * from member100
+	</select>
 </mapper>

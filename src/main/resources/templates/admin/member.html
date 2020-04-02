@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org/" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h2>회원목록</h2>
+	공1:<img src="/img/ball1.jpg" width="50" height="50">	
+	<table>
+		<tr data-th-each="m : ${list}">
+			<td data-th-text="${m.id}">아이디</td>
+			<td data-th-text="${m.name}">이름</td>
+			<td data-th-text="${m.role}">권한</td>
+		</tr>
+	</table>
+</body>
+</html>

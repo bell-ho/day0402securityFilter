@@ -1,6 +1,7 @@
 package com.example.demo.db;
 
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -24,6 +25,12 @@ public class DBManager {
 		MemberVo m = session.selectOne("member.selectMember",username);
 		session.close();
 		return m;
+	}
+	public static List<MemberVo> selectMemberAll(){
+		SqlSession session = factory.openSession();
+		List<MemberVo> list  = session.selectList("member.selectAll");
+		session.close();
+		return list;
 	}
 	
 	public static int insert(MemberVo m) {
