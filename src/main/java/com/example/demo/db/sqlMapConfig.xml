@@ -7,6 +7,7 @@
 
 <typeAliases>
 	<typeAlias type="com.example.demo.vo.MemberVo" alias="MemberVo"/>
+	<typeAlias type="com.example.demo.vo.TransferVo" alias="TransferVo"/>
 </typeAliases>
 
   <environments default="development">
@@ -22,5 +23,6 @@
   </environments>
   <mappers>
     <mapper resource="com/example/demo/db/memberMapper.xml"/>
+    <mapper resource="com/example/demo/db/accountMapper.xml"/>
   </mappers>
 </configuration>

@@ -6,8 +6,10 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@Configuration //환경설정 이라고 알려줌
-@EnableWebSecurity //시큐리티설정을 어노테이션으로 할것임을 알려주는것
+@Configuration 
+//환경설정 이라고 알려줌
+@EnableWebSecurity 
+//시큐리티설정을 어노테이션으로 할것임을 알려주는것
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override

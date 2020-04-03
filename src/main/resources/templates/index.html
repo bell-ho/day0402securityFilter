@@ -7,6 +7,9 @@
 <body>
 	<h2>비트몰</h2>
 	<a sec:authorize="isAuthenticated()" th:href="@{/logout}">로그아웃</a>
+	
+	<hr>
+	
 	<p th:text="${m.id}"></p>
 	<p th:text="${m.pwd}"></p>
 	<p th:text="${m.name}"></p>
